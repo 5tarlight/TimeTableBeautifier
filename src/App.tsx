@@ -1,25 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { days, getTimes } from "./lib";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header>
+        <h1>Time Table Beautifier</h1>
       </header>
-    </div>
+
+      <div className="content-container">
+        <table>
+          <thead>
+            <tr>
+              {days.map((day, index) => (
+                <th key={index}>{day}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {getTimes().map((time, index) => {
+              return (
+                <tr key={index}>
+                  <th>{time}</th>
+                  {[0, 1, 2, 3, 4].map((i, index) => {
+                    return (
+                      <td key={index}>
+                        {time}-{i}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 }
 
