@@ -33,7 +33,10 @@ export const toTime = (time: number) => {
 export const findLecture = (date: number, time: number, data: TimeTable) => {
   for (let i = 0; i < data[date].length; i++) {
     if (data[date][i].start <= time && data[date][i].end > time) {
-      return data[date][i];
+      return {
+        lecture: data[date][i],
+        line: time - data[date][i].start,
+      };
     }
   }
 
@@ -63,27 +66,28 @@ export interface TimeCellProps {
 }
 
 export const getCellProps = (date: number, time: number, data: TimeTable) => {
-  const lecture = findLecture(date, time, data);
+  const found = findLecture(date, time, data);
 
-  if (!lecture) {
+  if (!found) {
     return {
       color: "transparent",
-      isStart: false,
-      isEnd: false,
+      isStart: true,
+      isEnd: true,
       line: time,
       text: "",
     };
   }
 
+  const { lecture, line } = found;
   const color = lecture.color;
   const isStart = lecture.start === time;
-  const isEnd = lecture.end === time;
+  const isEnd = lecture.end - 1 === time;
 
   return {
     color,
     isStart,
     isEnd,
-    line: time,
-    text: `${time}-${date}`,
+    line,
+    text: `${time}-${line}`,
   };
 };

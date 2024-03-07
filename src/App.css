@@ -36,3 +36,11 @@ td {
   overflow: hidden;
   text-align: center;
 }
+
+.time-cell {
+  border: none;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  text-align: left;
+  padding: 0 0.5rem;
+}
