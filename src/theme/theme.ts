@@ -1,6 +1,6 @@
 export interface ColorScheme {
   header: {
-    bgColor: string;
-    textColor: string;
+    backgroundColor: string;
+    color: string;
   };
 }

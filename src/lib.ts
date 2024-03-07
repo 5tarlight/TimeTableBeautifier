@@ -1,15 +1,6 @@
+import { CSSProperties } from "react";
+
 export const days = ["월", "화", "수", "목", "금"];
-
-// export const getTimes = () => {
-//   const times = [];
-
-//   for (let i = 9; i <= 18; i++) {
-//     times.push(`${i}:00`);
-//     times.push(`${i}:30`);
-//   }
-
-//   return times;
-// };
 
 export const getTimes = () => {
   return Array.from({ length: 21 }, (_, index) => index);
@@ -42,20 +33,6 @@ export const findLecture = (date: number, time: number, data: TimeTable) => {
 
   return null;
 };
-
-// export const getCurrentColor = (
-//   date: number,
-//   time: number,
-//   data: TimeTable
-// ) => {
-//   for (let i = 0; i < data[date].length; i++) {
-//     if (data[date][i].start <= time && data[date][i].end > time) {
-//       return data[date][i].color;
-//     }
-//   }
-
-//   return "transparent";
-// };
 
 export interface TimeCellProps {
   color: string;
@@ -91,3 +68,17 @@ export const getCellProps = (date: number, time: number, data: TimeTable) => {
     text: `${time}-${line}`,
   };
 };
+
+// export const parseTheme = (theme: { [key: string]: string }): CSSProperties => {
+//   const result: CSSProperties = {};
+
+//   for (const key in theme) {
+//     if (typeof theme[key] === "object") {
+//       result[key] = parseTheme(theme[key]);
+//     } else {
+//       result[key] = theme[key];
+//     }
+//   }
+
+//   return result; // Added return statement
+// };
